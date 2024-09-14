@@ -21926,6 +21926,32 @@
                                 e(((t = n.target.checked), { type: Qa, payload: t }));
                             },
                         })
+                    ),
+                    n.createElement(
+                        $a.Group,
+                        null,
+                        n.createElement($a.Check, {
+                            label: "Automatically reserve studies",
+                            type: "checkbox",
+                            checked: t.reserve_studies,
+                            onChange: function (n) {
+                                var t;
+                                e(((t = n.target.checked), { type: "SETTING_RESERVE_STUDIES", payload: t }));
+                            },
+                        })
+                    ),
+                    n.createElement(
+                        $a.Group,
+                        null,
+                        n.createElement($a.Check, {
+                            label: "Automatically open study page",
+                            type: "checkbox",
+                            checked: t.open_page,
+                            onChange: function (n) {
+                                var t;
+                                e(((t = n.target.checked), { type: "SETTING_OPEN_PAGE", payload: t }));
+                            },
+                        })
                     )
                 );
             }

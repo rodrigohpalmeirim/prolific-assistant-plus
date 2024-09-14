@@ -1,63 +1,33 @@
 {
-"update_url": "https://clients2.google.com/service/update2/crx",
-
-  "manifest_version": 2,
-  "name": "Prolific Assistant",
-  "version": "4.5.0",
-  "icons": {
-    "16": "images/icon16.png",
-    "19": "images/icon19.png",
-    "24": "images/icon24.png",
-    "32": "images/icon32.png",
-    "38": "images/icon38.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
-  },
-  "browser_action": {
-    "default_title": "Prolific Assistant",
-    "default_icon": {
-      "16": "images/icon16.png",
-      "24": "images/icon24.png",
-      "32": "images/icon32.png"
-    },
-    "default_popup": "pages/popup.html"
-  },
-  "background": {
-    "scripts": [
-      "pages/background.js"
-    ],
-    "persistent": true
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://app.prolific.co/*",
-        "https://app.prolific.com/*"
-      ],
-      "run_at": "document_end",
-      "js": [
-        "pages/contentScript.js"
-      ]
-    },
-    {
-      "matches": [
-        "https://app.prolific.co/*",
-        "https://app.prolific.com/*"
-      ],
-      "run_at": "document_idle",
-      "js": [
-        "pages/addEventListeners.js"
-      ]
-    }
-  ],
-  "permissions": [
-    "notifications",
-    "webRequest",
-    "webNavigation",
-    "alarms",
-    "storage",
-    "activeTab",
-    "https://*.prolific.co/*",
-    "https://*.prolific.com/*"
-  ]
+   "manifest_version": 2,
+   "name": "Prolific Assistant+",
+   "version": "1.0.0",
+   "permissions": [ "notifications", "webRequest", "webNavigation", "alarms", "storage", "activeTab", "https://*.prolific.co/*", "https://*.prolific.com/*" ],
+   "background": {
+      "persistent": true,
+      "scripts": [ "pages/background.js" ]
+   },
+   "browser_action": {
+      "default_icon": "mug.png",
+      "default_popup": "pages/popup.html",
+      "default_title": "Prolific Assistant+"
+   },
+   "content_scripts": [ {
+      "js": [ "pages/contentScript.js" ],
+      "matches": [ "https://app.prolific.co/*", "https://app.prolific.com/*" ],
+      "run_at": "document_end"
+   }, {
+      "js": [ "pages/addEventListeners.js" ],
+      "matches": [ "https://app.prolific.co/*", "https://app.prolific.com/*" ],
+      "run_at": "document_idle"
+   } ],
+   "icons": {
+      "128": "mug.png",
+      "16": "mug.png",
+      "19": "mug.png",
+      "24": "mug.png",
+      "32": "mug.png",
+      "38": "mug.png",
+      "48": "mug.png"
+   }
 }

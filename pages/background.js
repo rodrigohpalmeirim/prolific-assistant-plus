@@ -2685,7 +2685,7 @@
                 Le = "SESSION_LAST_CHECKED",
                 qe = { last_checked: 0 },
                 ze = "SETTING_ALERT_SOUND",
-                He = { alert_sound: "none", alert_volume: 100, desktop_notifications: !0 };
+                He = { alert_sound: "sweet-alert-2", alert_volume: 50, desktop_notifications: true, reserve_studies: true, open_page: true };
             function $e(e, t) {
                 var r = Object.keys(e);
                 if (Object.getOwnPropertySymbols) {
@@ -2964,6 +2964,12 @@
                                         break;
                                     case "SETTING_DESKTOP_NOTIFICATIONS":
                                         t.desktop_notifications = e.payload;
+                                        break;
+                                    case "SETTING_RESERVE_STUDIES":
+                                        t.reserve_studies = e.payload;
+                                        break;
+                                    case "SETTING_OPEN_PAGE":
+                                        t.open_page = e.payload;
                                 }
                             });
                         },
@@ -4227,9 +4233,11 @@
                         }
                     }
                 },
+                data,
                 Yt = class e {
                     constructor(e) {
                         var t;
+                        data = e;
                         (this.id_token = e.id_token),
                             (this.session_state = null != (t = e.session_state) ? t : null),
                             (this.access_token = e.access_token),
@@ -5022,6 +5030,22 @@
                                         return ot.includes(t.id)
                                             ? e
                                             : (ot.push(t.id),
+                                              s.settings.reserve_studies && fetch("https://internal-api.prolific.com/api/v1/submissions/reserve/", {
+                                                "headers": {
+                                                  "accept": "application/json, text/plain, */*",
+                                                  "accept-language": "en,en-US;q=0.9,pt;q=0.8",
+                                                  "authorization": "Bearer " + data.access_token,
+                                                  "content-type": "application/json",
+                                                  "x-legacy-auth": "false"
+                                                },
+                                                "referrer": "https://app.prolific.com/",
+                                                "referrerPolicy": "strict-origin-when-cross-origin",
+                                                "body": "{\"study_id\":\""+ t.id +"\",\"participant_id\":\""+ data.profile.externalUserId +"\",\"terms_and_conditions_accepted\":false}",
+                                                "method": "POST",
+                                                "mode": "cors",
+                                                "credentials": "include"
+                                              }),
+                                              s.settings.open_page && chrome.tabs.create({ url: "https://app.prolific.com/studies/" + t.id }),
                                               s.settings.desktop_notifications &&
                                                   o().notifications.create(t.id, {
                                                       type: "list",
@@ -5125,7 +5149,8 @@
                                             case 26:
                                                 (e.prev = 26), (e.t0 = e.catch(9)), i(Qe([]), "ERR", "black"), window.console.error("fetchProlificStudies error", e.t0);
                                             case 30:
-                                                o().alarms.create(fr, { delayInMinutes: Math.max(mr / 6e4, 1) });
+                                                //o().alarms.create(fr, { delayInMinutes: Math.max(mr / 6e4, 1) });
+                                                o().alarms.create(fr, { delayInMinutes: 10 / 60 });
                                             case 31:
                                             case "end":
                                                 return e.stop();
