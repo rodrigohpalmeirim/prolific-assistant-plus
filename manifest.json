@@ -1,26 +1,31 @@
 {
-   "manifest_version": 2,
-   "name": "Prolific Assistant+",
-   "version": "1.0.0",
-   "permissions": [ "notifications", "webRequest", "webNavigation", "alarms", "storage", "activeTab", "https://*.prolific.co/*", "https://*.prolific.com/*" ],
-   "background": {
-      "persistent": true,
-      "scripts": [ "pages/background.js" ]
-   },
-   "browser_action": {
-      "default_icon": "mug.png",
+   "action": {
+      "default_icon": {
+         "16": "mug.png",
+         "24": "mug.png",
+         "32": "mug.png"
+      },
       "default_popup": "pages/popup.html",
       "default_title": "Prolific Assistant+"
    },
+   "background": {
+      "scripts": [ "pages/serviceWorker.js" ],
+      "service_worker": "pages/serviceWorker.js"
+   },
+   "browser_specific_settings": {
+      "gecko": {
+         "id": "{09993eda-1986-4e10-886e-5c63815338c5}"
+      }
+   },
    "content_scripts": [ {
       "js": [ "pages/contentScript.js" ],
-      "matches": [ "https://app.prolific.co/*", "https://app.prolific.com/*" ],
+      "matches": [ "https://*.prolific.co/*", "https://*.prolific.com/*" ],
       "run_at": "document_end"
-   }, {
-      "js": [ "pages/addEventListeners.js" ],
-      "matches": [ "https://app.prolific.co/*", "https://app.prolific.com/*" ],
-      "run_at": "document_idle"
    } ],
+   "content_security_policy": {
+      "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+   },
+   "host_permissions": [ "https://*.prolific.co/*", "https://*.prolific.com/*" ],
    "icons": {
       "128": "mug.png",
       "16": "mug.png",
@@ -29,5 +34,14 @@
       "32": "mug.png",
       "38": "mug.png",
       "48": "mug.png"
-   }
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhzWsR/8NvX86q0w2neyjLOdxF4H6tDG4Xf/Iu3pgE9JgpTbbLl9oTmRGisIruB19JMPijjXwOCKO4sGq/DeQj45jRlvQEZ1Q8nEK3jI6DpG3PqlxOIKL0cCH1FVl08gma/NumTvxCwNSoGz/rMLtgbX0y6T6ZKbGcfbSXDEe7VkmzqjldqffWfueNzD+E1E+ZTUY/b1zhhRC5Akx/+GZbOLHFCKMjESS1WVVciFsMMVRfRcmjv1i/4CtPvFUMCOJbLFY9HDuBMHBj+hqOGg5CVsPZ3apg49VGGYhr+opVWLti11P8y6uxAeHFoLemaZQovq79ZCxIqnt6SXbhzSZnQIDAQAB",
+   "manifest_version": 3,
+   "name": "Prolific Assistant",
+   "permissions": [ "notifications", "alarms", "storage", "identity", "offscreen" ],
+   "version": "2.0.0",
+   "web_accessible_resources": [ {
+      "matches": [  ],
+      "resources": [ "pages/popup.html" ]
+   } ]
 }

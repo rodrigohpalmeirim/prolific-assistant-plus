@@ -1,4 +1,4 @@
 (() => {
-    var a;
-    (a = document.getElementById("app")) && a.classList.add("pa-enabled");
+    var e;
+    (e = document.getElementById("app")) ? e.classList.add("pa-enabled") : console.error('Element with id "app" not found');
 })();
