@@ -1,10 +1,6 @@
 {
    "action": {
-      "default_icon": {
-         "16": "mug.png",
-         "24": "mug.png",
-         "32": "mug.png"
-      },
+      "default_icon": "mug.png",
       "default_popup": "pages/popup.html",
       "default_title": "Prolific Assistant+"
    },
@@ -37,9 +33,9 @@
    },
    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhzWsR/8NvX86q0w2neyjLOdxF4H6tDG4Xf/Iu3pgE9JgpTbbLl9oTmRGisIruB19JMPijjXwOCKO4sGq/DeQj45jRlvQEZ1Q8nEK3jI6DpG3PqlxOIKL0cCH1FVl08gma/NumTvxCwNSoGz/rMLtgbX0y6T6ZKbGcfbSXDEe7VkmzqjldqffWfueNzD+E1E+ZTUY/b1zhhRC5Akx/+GZbOLHFCKMjESS1WVVciFsMMVRfRcmjv1i/4CtPvFUMCOJbLFY9HDuBMHBj+hqOGg5CVsPZ3apg49VGGYhr+opVWLti11P8y6uxAeHFoLemaZQovq79ZCxIqnt6SXbhzSZnQIDAQAB",
    "manifest_version": 3,
-   "name": "Prolific Assistant",
+   "name": "Prolific Assistant+",
    "permissions": [ "notifications", "alarms", "storage", "identity", "offscreen" ],
-   "version": "2.0.0",
+   "version": "5.18.0",
    "web_accessible_resources": [ {
       "matches": [  ],
       "resources": [ "pages/popup.html" ]
